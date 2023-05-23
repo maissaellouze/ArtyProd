@@ -1,0 +1,11 @@
+<!-- demander_projet.html -->
+<form method="POST">
+    {% csrf_token %}
+    <label for="id_nom">Nom du projet:</label>
+    <input type="text" id="id_nom" name="libelle" value="nom">
+  
+    <label for="id_description">Description:</label>
+    <textarea id="id_description" name="desc" value="desc"></textarea>
+  
+    <button type="submit">Demander le projet</button>
+</form>

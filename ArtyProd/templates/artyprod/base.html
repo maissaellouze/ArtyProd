@@ -1,0 +1,244 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/main.css' %}">
+    <noscript><link rel="stylesheet" type="text/css" href="{% static 'assets/css/noscript.css' %}"></noscript>
+<meta charset='utf-8'>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRyzUB8V-Ie1AF9FRmbPkPS6tTpJx07JE&callback=initMap"></script>
+
+  <!-- Ajouter les fichiers JavaScript ici -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<title>
+{% block title %} {% endblock %}
+</title>
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/templatemo.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.min.css' %}">
+
+    <!-- Load map styles -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+<link rel='stylesheet' type='text/css' media='screen' href="{% static 'css/base.css'%}">
+{% block styles %} 
+<style>
+    /* Add styles for dark mode here */
+    body.dark-mode {
+      background-color: #333;
+      color: #fff;
+    }
+    .product-details.dark-mode {
+    border: 2px solid #fff;
+    }
+    
+    /* Hide the light mode button in dark mode */
+    .product-details.dark-mode .toggle-mode.light-mode {
+    display: none;
+    }
+    
+    /* Hide the dark mode button in light mode */
+    .product-details.light-mode .toggle-mode.dark-mode {
+    display: none;
+    }
+    
+		.profile-details{
+	display: flex;
+	align-items: center;
+	background:#7AC9D6;
+	border: 2px solid #EFEEF1;
+	border-radius: 6px;
+	height: 50px;
+	min-width: 220px;
+	padding: 0 15px 0 2px;
+	}
+	.profile-details .admin_name{
+	font-size: 15px;
+	font-weight: 500;
+	color: #333;
+	margin: 0 10px;
+	white-space: nowrap;
+	border-radius: 20px;
+	
+	}
+	.profile-details i{
+	font-size: 25px;
+	color: #333;
+	}
+	
+    </style>
+{% endblock %}
+</head>
+<body class="light-mode">
+  
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="{% url 'index' %}">ArtyProd</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">Service</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'tous_projets' %}">Portfolio </a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'equipe' %}">Equipe</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'mes_projets' %}">Panier</a>
+                    </li>
+                   
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'send_email' %}">contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'blog' %}">Blog</a>
+                    </li>
+                    
+                    {% endif %}
+                    
+                   
+                      
+                   
+                   
+                
+                <div class="navbar align-self-center d-flex">
+                    {% if user.is_authenticated %}
+        
+        
+                    <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+
+                    <li class="nav-item ">
+                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                            <div class="navbar-nav font-weight-bold mx-auto py-0">
+                                
+                    
+                                <div class="profile-details">
+                            
+                           
+                                    <span class="admin_name">
+                                        {{user}}
+                                    </span>
+                                    
+                            </div>
+                        
+                    </li>
+                    
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'logout' %}">Déconnexion</a>
+                        </li>
+                        
+            
+                    {% else %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'login' %}">Connexion</a>
+                    </li>
+                    <li class="nav-item active">
+                        
+                            
+                            <a href="{% url 'register' %}"> S'inscrire </a>
+                    </li>
+                    {% endif %}
+                </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Page Header-->
+    
+    
+
+
+
+
+   
+{% block content %}
+
+
+
+
+
+   
+
+</div>
+
+
+			</div>
+
+		<!-- Scripts -->
+		<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+		<script src="{% static 'assets/js/browser.min.js' %}"></script>
+		<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+		<script src="{% static 'assets/js/util.js' %}"></script>
+		<script src="{% static 'assets/js/main.js' %}"></script>
+		
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+<!-- Scripts -->
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'assets/js/browser.min.js' %}"></script>
+<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+<script src="{% static 'assets/js/util.js' %}"></script>
+<script src="{% static 'assets/js/main.js' %}"></script>
+
+
+
+
+
+
+
+
+
+
+    
+
+</body>
+<style>
+    .profile-details{
+display: flex;
+align-items: center;
+background:#7AC9D6;
+border: 2px solid #EFEEF1;
+border-radius: 6px;
+height: 50px;
+min-width: 220px;
+padding: 0 15px 0 2px;
+}
+.profile-details .admin_name{
+font-size: 15px;
+font-weight: 500;
+color: #333;
+margin: 0 10px;
+white-space: nowrap;
+border-radius: 20px;
+
+}
+.profile-details i{
+font-size: 25px;
+color: #333;
+}
+ </style>
+
+</html>
+
+{% endblock %}

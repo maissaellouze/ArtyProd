@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Data</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th, td {
+        text-align: left;
+        padding: 8px;
+      }
+
+      th {
+        background-color: #ddd;
+        font-weight: bold;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      tr:hover {
+        background-color: #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>My Data</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Personnel</th>
+          <th>Projets</th>
+          <th>Services</th>
+          <th>Details</th>
+          <th>Equipes</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in personnel %}
+        <tr>
+          <td>{{ p.nom }}</td>
+          <td>{{ p.skill }}</td>
+          <td>{{ p.ficher }}</td>
+          <td><img class="img-fluid" src="/media/{{p.Img}}" alt="Tic Tac Toe"></td>
+          <td></td>
+        </tr>
+        {% endfor %}
+
+        {% for pr in projets %}
+        <tr>
+          <td></td>
+          <td>{{ pr.libelle }}</td>
+          <td></td>
+          <td></td>
+          <td>{{ pr.equipe.nom }}</td>
+        </tr>
+        {% endfor %}
+
+        {% for s in services %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td>{{ s.type }}</td>
+          <td></td>
+          <td></td>
+        </tr>
+        {% endfor %}
+
+        {% for d in details %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>{{ d.fichier }}</td>
+          <td></td>
+        </tr>
+        {% endfor %}
+
+        {% for e in equipes %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>{{ e.nom }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

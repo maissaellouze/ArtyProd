@@ -1,0 +1,209 @@
+{% extends './base.html' %}
+
+{% block content %}
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	{% load static %}
+	<head>
+		<!-- Core theme CSS (includes Bootstrap)-->
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link rel='stylesheet' type='text/css' media='screen' href="{% static 'css/style.css'%}">
+
+		  
+		<title>Phantom by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		
+		<style>
+			.product-image {
+			  height: 400px;
+			  object-fit: cover;
+			}
+			.card {
+			  border: none;
+			  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+			  transition: all 0.3s ease;
+			}
+			.card:hover {
+			  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+			}
+			.card-title {
+			  font-size: 1.2rem;
+			  font-weight: bold;
+			}
+			.card-text {
+			  font-size: 0.9rem;
+			  color: #666;
+			}
+			.btn-primary {
+			  background-color: #007bff;
+			  border-color: #007bff;
+			}
+			.btn-primary:hover {
+			  background-color: #0069d9;
+			  border-color: #0062cc;
+			}
+		
+		.profile-details{
+		  display: flex;
+		  align-items: center;
+		  background:#7AC9D6;
+		  border: 2px solid #EFEEF1;
+		  border-radius: 6px;
+		  height: 50px;
+		  min-width: 220px;
+		  padding: 0 15px 0 2px;
+		  }
+		  .profile-details .admin_name{
+		  font-size: 15px;
+		  font-weight: 500;
+		  color: #333;
+		  margin: 0 10px;
+		  white-space: nowrap;
+		  border-radius: 20px;
+		  
+		  }
+		  .profile-details i{
+		  font-size: 25px;
+		  color: #333;
+		  }
+		   </style>	
+
+    	</head>
+
+				
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+				<header class="masthead" >
+					<div class="container position-relative px-4 px-lg-5">
+						<div class="row gx-4 gx-lg-5 justify-content-center">
+							<div class="col-md-10 col-lg-8 col-xl-7">
+								<div class="site-heading">
+									<h1> Our members</h1>
+									<span class="subheading">Discover our members </span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</header>
+
+				
+
+
+					<div id="main">
+						<div class="inner">
+							
+							
+							
+								
+								<article class="style1">
+									<span class="image">
+										<img src="/media/{{ equipe.Img }}" style="height: 500px; width: 350px;" alt="">
+									</span>
+										<h2>{{ equipe.nom }}</h2>
+										
+									
+									
+								</article>
+								
+							
+							
+
+								<div class="container">
+							
+								<h2>Les membres de cet equipe </h2>
+							
+								
+								<div class="row">
+									{% for m in membres %}
+									<div class="col-md-4 mb-4">
+									  <div class="card">
+										<img class="card-img-top product-image" src="/media/{{ m.Img }}" alt="{{ product.libelle }}" style="height: 500px; width: 350px;">
+										<div class="card-body">
+											<center>
+										  <h5 class="display-4 mb-4 fw-bold text-center">{{ m.nom }}</h5>
+										  <p class="fw-bold text-center"> <strong>Skill: </strong>{{ m.skill }}</p>
+										  <p class="fw-bold text-center"><strong>lien linkedIn : </strong>{{ m.lien_linkedIn }}</p>
+                                          <p class="fw-bold text-center"><strong>CV: </strong> {{ m.ficher }}</p>
+										</center>	
+										
+										</div>
+									  </div>
+									</div>
+									{% endfor %}
+									
+								  </div> 
+							
+							
+							
+   </div>
+						</div>
+					</div>
+					
+					
+					
+					
+			
+				
+						
+
+
+					<footer class="border-top">
+						<div class="container px-4 px-lg-5">
+							<div class="row gx-4 gx-lg-5 justify-content-center">
+								<div class="col-md-10 col-lg-8 col-xl-7">
+									<ul class="list-inline text-center">
+										<li class="list-inline-item">
+											<a href="#!">
+												<span class="fa-stack fa-lg">
+													<i class="fas fa-circle fa-stack-2x"></i>
+													<i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+												</span>
+											</a>
+										</li>
+										<li class="list-inline-item">
+											<a href="#!">
+												<span class="fa-stack fa-lg">
+													<i class="fas fa-circle fa-stack-2x"></i>
+													<i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+												</span>
+											</a>
+										</li>
+										<li class="list-inline-item">
+											<a href="#!">
+												<span class="fa-stack fa-lg">
+													<i class="fas fa-circle fa-stack-2x"></i>
+													<i class="fab fa-github fa-stack-1x fa-inverse"></i>
+												</span>
+											</a>
+										</li>
+									</ul>
+									<div class="small text-center text-muted fst-italic">Copyright &copy; Your Website 2023</div>
+								</div>
+							</div>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+		<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+		<script src="{% static 'assets/js/browser.min.js' %}"></script>
+		<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+		<script src="{% static 'assets/js/util.js' %}"></script>
+		<script src="{% static 'assets/js/main.js' %}"></script>
+
+	</body>
+</html>
+{% endblock %}

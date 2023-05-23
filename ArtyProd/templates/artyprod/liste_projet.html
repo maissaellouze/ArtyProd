@@ -1,0 +1,208 @@
+
+{% extends './base.html' %}
+
+{% block content %}
+<!DOCTYPE HTML>
+
+<html>
+	{% load static %}
+	<head>
+		{% block styles %}
+<style>
+  .product-image {
+    height: 400px;
+    object-fit: cover;
+  }
+  .card {
+    border: none;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  .card:hover {
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  }
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  .card-text {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  .btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+  }
+</style>
+{% endblock %}
+		<title>Generic - Phantom by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/main.css' %}">
+		<noscript><link rel="stylesheet" type="text/css" href="{% static 'assets/css/noscript.css' %}"></noscript>
+		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Clean Blog - Start Bootstrap Theme</title>
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
+        <!-- Font Awesome icons (free version)-->
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link rel='stylesheet' type='text/css' media='screen' href="{% static 'css/style.css'%}">
+
+	</head>
+	
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				  <!-- Page Header-->
+				  <header class="masthead" >
+					<div class="container position-relative px-4 px-lg-5">
+						<div class="row gx-4 gx-lg-5 justify-content-center">
+							<div class="col-md-10 col-lg-8 col-xl-7">
+								<div class="site-heading">
+									<h1> Projects</h1>
+									<span class="subheading">Find our projects of this equipe  </span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</header>
+
+				
+					
+
+
+
+
+
+					<div id="main">
+						<div class="inner">
+							
+							
+							
+								
+								<article class="style1">
+									<span class="image">
+										<img src="/media/{{ equipe.Img }}" style="height: 500px; width: 350px;" alt="">
+									</span>
+										<h2>{{ equipe.nom }}</h2>
+										
+									
+									
+								</article>
+								
+							
+							
+
+								<div class="container">
+							
+								<h2>Les projets de cet equipe </h2>
+							
+								
+								<div class="row">
+									{% for p in projet %}
+									<div class="col-md-4 mb-4">
+									  <div class="card">
+										<img class="card-img-top product-image" src="/media/{{ p.Img }}" alt="{{ p.libelle }}" style="height: 500px; width: 350px;">
+										<div class="card-body">
+											<center>
+										  <h5 class="display-4 mb-4 fw-bold text-center">{{ p.libelle }}</h5>
+										  <p class="fw-bold text-center"> <strong>description: </strong>{{ p.description }}</p>
+										  <p class="fw-bold text-center"><strong>date debut: </strong>{{ p.date_debut }}</p>
+                                          <p class="fw-bold text-center"><strong>date fin: </strong> {{ p.date_debut }}</p>
+										
+										
+										{% if projet.acheve %}
+                                          <a href="{% url 'demander_projet'  projet_id=projet.id %}" class="btn btn-outline-success my-2 my-sm-0" type="submit">demande projet deja acheve </a>
+
+                                      {% else %}
+									  {% if messages %}
+									  	<a href="" class="btn btn-outline-info my-2 my-sm-0" type="submit">demande envoyée</a>
+										  {% else %}
+                                      <a href="" class="btn btn-outline-warning my-2 my-sm-0" type="submit">demande projet non achevée </a>
+									  {% endif %}		
+                                      {% endif %}
+									</center>	
+										</div>
+									  </div>
+									</div>
+									{% endfor %}
+									
+								  </div> 
+							
+							
+							
+   </div>
+						</div>
+					</div>
+					
+					
+					
+					
+			
+				
+						
+
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<section>
+								<h2>Get in touch</h2>
+								<form method="post" action="#">
+									<div class="fields">
+										<div class="field half">
+											<input type="text" name="name" id="name" placeholder="Name" />
+										</div>
+										<div class="field half">
+											<input type="email" name="email" id="email" placeholder="Email" />
+										</div>
+										<div class="field">
+											<textarea name="message" id="message" placeholder="Message"></textarea>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send" class="primary" /></li>
+									</ul>
+								</form>
+							</section>
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+		<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+		<script src="{% static 'assets/js/browser.min.js' %}"></script>
+		<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+		<script src="{% static 'assets/js/util.js' %}"></script>
+		<script src="{% static 'assets/js/main.js' %}"></script>
+
+	</body>
+</html>
+{% endblock %}
